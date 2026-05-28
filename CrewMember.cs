@@ -63,7 +63,16 @@ namespace Project_Programming
             get { return snp; }
             set
             {
-                snp = value;
+               string[] str = value.Split(' ');
+if (str.Length < 3)
+{
+    throw new ArgumentException("Full name of the peson must be defined as: Surname name patronymic");
+}
+else if (string.IsNullOrWhiteSpace(str[0]) || string.IsNullOrWhiteSpace(str[1]) || string.IsNullOrWhiteSpace(str[2]))
+{
+    throw new ArgumentException("Full name of the peson must be defined as: Surname name patronymic");
+}
+snp = value;
             }
         }
 
