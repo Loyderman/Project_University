@@ -31,7 +31,9 @@ namespace Project_Programming
             get { return profession; }
             set
             {
-                profession = value;
+               if (string.IsNullOrEmpty(value))
+    throw new ArgumentNullException("Proffesion can't be empty");
+profession = value;
             }
         }
         public int Age
