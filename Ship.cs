@@ -82,8 +82,68 @@ namespace Project_Programming
                 name_of_the_port = value;
             }
         }
-        public virtual void AddShips(Ship ShipToAdd)
+        public virtual void AddShips()
         {
+            int k = 0;
+            while (true)
+            {
+
+                if (k > 0)
+                {
+                    Console.WriteLine("Do you want to add another ship in the port?");
+                    Console.WriteLine("1. Yes ");
+                    Console.WriteLine("2. No");
+                    int j = Convert.ToInt32(Console.ReadLine());
+                    if (j == 2)
+                        break;
+                }
+                Console.WriteLine("There are different type of ships you want to add to the port");
+                Console.WriteLine("1. Passenger ship");
+                Console.WriteLine("2. Cargo ship");
+                Console.WriteLine("3. Quit");
+                Console.WriteLine("Enter a number to modify property: ");
+                int i = Convert.ToInt32(Console.ReadLine());
+                if (i == 3)
+                {
+                    break;
+                }
+
+                switch (i)
+                {
+                    case 1:
+                        {
+                            PassengerShip pass = new PassengerShip();
+
+
+                            EnginePower = Engine;
+                            ship.Add(pass);
+     
+                            k++;
+                            break;
+                        }
+                    case 2:
+                        {
+
+                            Console.WriteLine("Print number you want modify the property:");
+                            double name = Convert.ToDouble(Console.ReadLine());
+
+
+                            Displacement = name;
+                            Console.WriteLine($"You have modified property of {name_of_the_ship}");
+                            k++;
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("You have entered an inccorect number");
+                            break;
+                        }
+                }
+
+
+
+            }
+
             ship.Add(ShipToAdd);
 
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace Project_Programming
         private int age;
         private int term_of_work;
 
-        public CrewMember() : this("Unknown", "Unknown", 0, 0) { }
+        public CrewMember() : this("Unknown", "Unknown", 0, 2) { }
 
         public CrewMember(string Snp, string proffesion, int age0, int Term)
         {
@@ -31,6 +32,8 @@ namespace Project_Programming
             get { return profession; }
             set
             {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Proffesion can't be empty");
                 profession = value;
             }
         }
@@ -63,6 +66,15 @@ namespace Project_Programming
             get { return snp; }
             set
             {
+                string[] str = value.Split(' ');
+                if (str.Length < 3)
+                {
+                    throw new ArgumentException("Full name of the peson must be defined as: Surname name patronymic");
+                }
+                else if (string.IsNullOrWhiteSpace(str[0]) || string.IsNullOrWhiteSpace(str[1]) || string.IsNullOrWhiteSpace(str[2]))
+                {
+                    throw new ArgumentException("Full name of the peson must be defined as: Surname name patronymic");
+                }
                 snp = value;
             }
         }

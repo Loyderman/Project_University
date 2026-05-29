@@ -11,16 +11,17 @@ namespace Project_Programming
         private int number_of_passengers;
         private int number_of_sits;
         private int capacity_of_sit;
-        protected List<PassengerShip> ships;
-        protected List<CrewMember> crew = new List<CrewMember>();
+        //protected List<PassengerShip> ship;
+        //protected List<CrewMember> crew = new List<CrewMember>();
 
+        public PassengerShip() : this(0, "Unknown", 234, "Unknown", 0, 0, 1) { }
         public PassengerShip(double enginePower, string name_of_the_ship, double displacement, string name_of_the_port, int number_of_passengers, int number_of_sits, int capacity_of_sit) : base(enginePower, name_of_the_ship, displacement, name_of_the_port)
         {
 
             Number_of_passengers = number_of_passengers;
             Number_of_sits = number_of_sits;
             Capacity_of_sit = capacity_of_sit;
-
+            
         }
         public int Number_of_passengers
         {
@@ -97,11 +98,13 @@ namespace Project_Programming
 
 
         }
-        public void AddShips(PassengerShip ShipToAdd)
+        public override void AddShips(Ship ShipToAdd)
         {
-            ships.Add(ShipToAdd);
+            ship.Add(ShipToAdd);
+            Console.WriteLine($"Your ship was succesfully added to the {name_of_the_port}");
 
         }
+      
         public override void AddMembers(CrewMember member)
         {
             crew.Add(member);
@@ -138,7 +141,7 @@ namespace Project_Programming
                         break;
 
                 }
-                Console.WriteLine("There are characteristic of your ship that you want to modify:");
+                Console.WriteLine("There are characteristic of your passenger ship that you want to modify:");
                 Console.WriteLine("1. Engine power (in watts)");
                 Console.WriteLine("2. Displacement");
                 Console.WriteLine("3. Name of the ship");
@@ -147,12 +150,10 @@ namespace Project_Programming
                 Console.WriteLine("6. Capacity of sit");
                 Console.WriteLine("7. Quit");
                 int i = Convert.ToInt32(Console.ReadLine());
+
                 if (i == 7)
-                {
                     break;
-                }
-                if (i > 0 && i < 7)
-                {
+
                     switch (i)
                     {
                         case 1:
@@ -179,7 +180,7 @@ namespace Project_Programming
                         case 3:
                             {
 
-                                Console.WriteLine("Print number you want modify the property:");
+                                Console.WriteLine("Print the new name of the ship:");
                                 string name = Console.ReadLine();
 
 
@@ -220,10 +221,14 @@ namespace Project_Programming
                                 k++;
                                 break;
                             }
+                        default:
+                        {
+                            Console.WriteLine("You have entered an inccorect number");
+                            break;
+                        }
                     }
-                }
-                else
-                    Console.WriteLine("You have entered incorrect number, try again");
+                
+                
             }
         }
     }
