@@ -15,7 +15,7 @@ namespace Project_Programming
         protected double displacement;
         protected string name_of_the_port;
         private int shipIndex;
-        protected static List<CrewMember> crew = new List<CrewMember>();
+        protected List<CrewMember> crew = new List<CrewMember>();
         protected static List<Ship> ship = new List<Ship>();
         public Ship(double enginePower, string name_of_the_ship, double displacement, string name_of_the_port)
         {
