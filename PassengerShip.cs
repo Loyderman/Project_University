@@ -11,16 +11,15 @@ namespace Project_Programming
         private int number_of_passengers;
         private int number_of_sits;
         private int capacity_of_sit;
-        protected List<PassengerShip> ships;
-        protected List<CrewMember> crew = new List<CrewMember>();
 
+        public PassengerShip() : this(0, "Unknown", 234, "Unknown", 0, 0, 1) { }
         public PassengerShip(double enginePower, string name_of_the_ship, double displacement, string name_of_the_port, int number_of_passengers, int number_of_sits, int capacity_of_sit) : base(enginePower, name_of_the_ship, displacement, name_of_the_port)
         {
 
             Number_of_passengers = number_of_passengers;
             Number_of_sits = number_of_sits;
             Capacity_of_sit = capacity_of_sit;
-
+            
         }
         public int Number_of_passengers
         {
@@ -97,14 +96,51 @@ namespace Project_Programming
 
 
         }
-        public void AddShips(PassengerShip ShipToAdd)
+        public override void AddShips(string charac)
         {
-            ships.Add(ShipToAdd);
+            PassengerShip ShipToAdd = new PassengerShip();
+            string[] character = charac.Split(',');
+            if(character.Length == 7)
+            {
+                ShipToAdd.NameOfTheShip = character[0];
+                ShipToAdd.NameOfThePort = character[1];
+                ShipToAdd.EnginePower = Convert.ToInt32(character[2]);
+                ShipToAdd.Displacement = Convert.ToInt32(character[3]);
+                ShipToAdd.Number_of_passengers = Convert.ToInt32(character[4]);
+                ShipToAdd.Number_of_sits = Convert.ToInt32(character[5]);
+                ShipToAdd.Capacity_of_sit = Convert.ToInt32(character[6]);
+                ship.Add(ShipToAdd);
+                Random rnd = new Random();
+                ShipToAdd.ShipIndex = rnd.Next(0, 1000);
+                Console.WriteLine($"Your ship with individual index: {ShipToAdd.ShipIndex} was succesfully added to the {ShipToAdd.NameOfThePort}");
+            }
+
+            else
+            {
+                Console.WriteLine("Ypu have entered data incorrectly");
+            }
+ 
 
         }
-        public override void AddMembers(CrewMember member)
+      
+        public override void AddMembers(string str)
         {
-            crew.Add(member);
+            CrewMember member = new CrewMember();
+
+            string[] character = str.Split(',');
+            if (character.Length == 4)
+            {
+                member.SNP = character[0];
+                member.Age = Convert.ToInt32(character[1]);
+                member.Term_of_work = Convert.ToInt32(character[2]);
+                member.Proffession = character[3];
+                crew.Add(member);
+            }
+
+            else
+            {
+                Console.WriteLine("You have written string inccorectly");
+            }
         }
         public override bool IshasCaptain()
         {
@@ -123,99 +159,61 @@ namespace Project_Programming
             }
             return false;
         }
-        public override void ShipModification()
+        public override void ShipModification(int num, string modification)
         {
-            int k = 0;
-            while (true)
-            {
-                if (k > 0)
-                {
-                    Console.WriteLine("Do you want to modify another property?");
-                    Console.WriteLine("1. Yes ");
-                    Console.WriteLine("2. No");
-                    int j = Convert.ToInt32(Console.ReadLine());
-                    if (j == 2)
-                        break;
+           
 
-                }
-                Console.WriteLine("There are characteristic of your passenger ship that you want to modify:");
-                Console.WriteLine("1. Engine power (in watts)");
-                Console.WriteLine("2. Displacement");
-                Console.WriteLine("3. Name of the ship");
-                Console.WriteLine("4. Number of passengers");
-                Console.WriteLine("5. Number of sits");
-                Console.WriteLine("6. Capacity of sit");
-                Console.WriteLine("7. Quit");
-                int i = Convert.ToInt32(Console.ReadLine());
-
-                if (i == 7)
-                    break;
-
-                    switch (i)
+                    switch (num)
                     {
                         case 1:
                             {
-                                Console.WriteLine("Print number you want modify the property:");
-                                double Engine = Convert.ToDouble(Console.ReadLine());
+                            
 
-                                EnginePower = Engine;
-                                Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                                k++;
+                                EnginePower = Convert.ToDouble(modification);
+                               
+                                
                                 break;
                             }
                         case 2:
                             {
 
-                                Console.WriteLine("Print number you want modify the property:");
-                                double name = Convert.ToDouble(Console.ReadLine());
+                               
 
-                                Displacement = name;
-                                Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                                k++;
+                                Displacement = Convert.ToDouble(modification);
+                                
+                               
                                 break;
                             }
                         case 3:
                             {
 
-                                Console.WriteLine("Print the new name of the ship:");
-                                string name = Console.ReadLine();
-
-
-                                NameOfTheShip = name;
-                                Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                                k++;
+                                NameOfTheShip = modification;
+                               
+                               
                                 break;
                             }
                         case 4:
                             {
 
-                                Console.WriteLine("Print number you want modify the property:");
-                                int name = Convert.ToInt32(Console.ReadLine());
-                                Number_of_passengers = name;
-                                Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                                k++;
+                                Number_of_passengers = Convert.ToInt32(modification);
+                                
+                               
                                 break;
                             }
                         case 5:
                             {
 
-                                Console.WriteLine("Print number you want modify the property:");
-                                int name = Convert.ToInt32(Console.ReadLine());
-
-                                Number_of_sits = name;
-                                Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                                k++;
+                                Number_of_sits = Convert.ToInt32(modification);
+                               
+                               
                                 break;
                             }
                         case 6:
                             {
+                                Capacity_of_sit = Convert.ToInt32(modification);
+                                
 
-                                Console.WriteLine("Print number you want modify the property:");
-                                int name = Convert.ToInt32(Console.ReadLine());
-                                Capacity_of_sit = name;
-                                Console.WriteLine($"You have modified property of {name_of_the_ship}");
-
-                                k++;
+                               
                                 break;
                             }
                         default:
@@ -226,7 +224,7 @@ namespace Project_Programming
                     }
                 
                 
-            }
+            
         }
     }
 }

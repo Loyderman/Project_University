@@ -1,0 +1,16 @@
+C:\Users\sasha\source\repos\Project_Programming\Project_Programming\bin\Debug\Project_Programming.exe.config
+C:\Users\sasha\source\repos\Project_Programming\Project_Programming\bin\Debug\Project_Programming.exe
+C:\Users\sasha\source\repos\Project_Programming\Project_Programming\bin\Debug\Project_Programming.pdb
+C:\Users\sasha\source\repos\Project_Programming\Project_Programming\obj\Debug\Project_Programming.csproj.AssemblyReference.cache
+C:\Users\sasha\source\repos\Project_Programming\Project_Programming\obj\Debug\Project_Programming.csproj.CoreCompileInputs.cache
+C:\Users\sasha\source\repos\Project_Programming\Project_Programming\obj\Debug\Project_Programming.exe
+C:\Users\sasha\source\repos\Project_Programming\Project_Programming\obj\Debug\Project_Programming.pdb
+C:\Users\sasha\source\repos\Project_Programming\Project_Programming\obj\Debug\Project_Programming.exe.config
+C:\Проєкт курсова\Project_University\Project_Programming\Project_Programming\bin\Debug\Project_Programming.exe.config
+C:\Проєкт курсова\Project_University\Project_Programming\Project_Programming\bin\Debug\Project_Programming.exe
+C:\Проєкт курсова\Project_University\Project_Programming\Project_Programming\bin\Debug\Project_Programming.pdb
+C:\Проєкт курсова\Project_University\Project_Programming\Project_Programming\obj\Debug\Project_Programming.csproj.AssemblyReference.cache
+C:\Проєкт курсова\Project_University\Project_Programming\Project_Programming\obj\Debug\Project_Programming.exe.config
+C:\Проєкт курсова\Project_University\Project_Programming\Project_Programming\obj\Debug\Project_Programming.csproj.CoreCompileInputs.cache
+C:\Проєкт курсова\Project_University\Project_Programming\Project_Programming\obj\Debug\Project_Programming.exe
+C:\Проєкт курсова\Project_University\Project_Programming\Project_Programming\obj\Debug\Project_Programming.pdb

@@ -8,13 +8,16 @@ namespace Project_Programming
 {
     public class CargoShip : Ship
     {
-        private double currentLoad;
         private double loadCapacity;
-        protected List<CargoShip> ships = new List<CargoShip>();
-        protected List<CrewMember> crew = new List<CrewMember>();
-        public CargoShip(double enginePower, string name_of_the_ship, double displacement, string name_of_the_port, double loadCapacity) : base(enginePower, name_of_the_ship, displacement, name_of_the_port)
+        private double currentLoad;
+        private int shipIndex;
+        public CargoShip() : this(0, "Unknown", 0, "Unknown", 0, 0) { }
+        public CargoShip(double enginePower, string name_of_the_ship, double displacement, string name_of_the_port, double loadCapacity, double load) : base(enginePower, name_of_the_ship, displacement, name_of_the_port)
         {
-            this.loadCapacity = loadCapacity;
+            LoadCapacity = loadCapacity;
+            CurrentLoad = load;
+            
+
         }
         public double LoadCapacity
         {
@@ -29,41 +32,66 @@ namespace Project_Programming
             }
         }
         public double CurrentLoad
-{
-    get { return currentLoad; }
-    set
-    {
-        if (value < 0)
         {
-            throw new ArgumentException("Load can't be negative");
+            get { return currentLoad; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Load can't be negative");
+                }
+                currentLoad = value;
+            }
         }
-        currentLoad = value;
-    }
-}
-         public bool IsOverloading()
+
+        public bool IsOverloading()
+        {
+             if (CurrentLoad > LoadCapacity)
  {
-     if (CurrentLoad > LoadCapacity)
-     {
-         Console.WriteLine("Your ship is overloaded");
-         return true;
+     
+     return true;
 
-     }
-     else
-     {
-         Console.WriteLine("Your ship is not overloaded");
-         return false;
-     }
  }
-
-        public void AddShips(CargoShip CarShipToAdd)
+ else
+ {
+     
+     return false;
+ }
+        }
+        public override void AddShips(string charac)
         {
-
-            ships.Add(CarShipToAdd);
+            CargoShip ShipToAdd = new CargoShip();
+            string[] character = charac.Split(',');
+            ShipToAdd.NameOfTheShip = character[0];
+            ShipToAdd.NameOfThePort = character[1];
+            ShipToAdd.EnginePower = Convert.ToInt32(character[2]);
+            ShipToAdd.Displacement = Convert.ToInt32(character[3]);
+            ShipToAdd.LoadCapacity = Convert.ToInt32(character[4]);
+            ShipToAdd.CurrentLoad = Convert.ToInt32(character[5]);
+            ship.Add(ShipToAdd);
+            Random rnd = new Random();
+            ShipToAdd.ShipIndex = rnd.Next(0, 1000);
 
         }
-        public override void AddMembers(CrewMember member)
+
+        public override void AddMembers(string str)
         {
-            crew.Add(member);
+            CrewMember member = new CrewMember();
+
+            string[] character = str.Split(',');
+            if (character.Length == 4)
+            {
+                member.SNP = character[0];
+                member.Age = Convert.ToInt32(character[1]);
+                member.Term_of_work = Convert.ToInt32(character[2]);
+                member.Proffession = character[3];
+                crew.Add(member);
+            }
+
+            else
+            {
+                Console.WriteLine("You have written string inccorectly");
+            }
         }
         public override bool IshasCaptain()
         {
@@ -82,103 +110,53 @@ namespace Project_Programming
             }
             return false;
         }
-        public override void ShipModification()
-{
-    int k = 0;
-    while (true)
-    {
-        if (k > 0)
+        public override void ShipModification(int num, string mod)
         {
-            Console.WriteLine("Do you want to modify another property?");
-            Console.WriteLine("1. Yes ");
-            Console.WriteLine("2. No");
-            int j = Convert.ToInt32(Console.ReadLine());
-            if (j == 2)
-                break;
+                    switch (num)
+                    {
+                        case 1:
+                            {
+                        EnginePower = Convert.ToDouble(mod);
+                        break;
+                            }
+                        case 2:
+                            {
 
-        }
-        Console.WriteLine("There are characteristic of your cargo ship that you want to modify:");
-        Console.WriteLine("1. Engine power (in watts)");
-        Console.WriteLine("2. Displacement");
-        Console.WriteLine("3. Name of the ship");
-        Console.WriteLine("4. Load Capacity");
-        Console.WriteLine("5. Current load");
-        Console.WriteLine("6. Quit");
-        int i = Convert.ToInt32(Console.ReadLine());
-        if (i == 6)
-            break;
+                        Displacement = Convert.ToDouble(mod);
  
-            switch (i)
-            {
-                case 1:
-                    {
-                        Console.WriteLine("Print number you want modify the property:");
-                        double Engine = Convert.ToDouble(Console.ReadLine());
+                                break;
+                            }
+                        case 3:
+                            {
 
+                        NameOfTheShip = mod;
 
-                        EnginePower = Engine;
-                        Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                        k++;
-                        break;
+                                break;
+                            }
+                        case 4:
+                            {
+
+                                LoadCapacity = Convert.ToDouble(mod);
+
+                                break;
+
+                            }
+                    case 5:
+                        {
+
+                            CurrentLoad = Convert.ToDouble(mod);
+                            IsOverloading();
+                            break;
+                        }
+                    default:
+                        {
+                            
+                            break;
+                        }
                     }
-                case 2:
-                    {
-
-                        Console.WriteLine("Print number you want modify the property:");
-                        double name = Convert.ToDouble(Console.ReadLine());
-
-
-                        Displacement = name;
-                        Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                        k++;
-                        break;
-                    }
-                case 3:
-                    {
-
-                        Console.WriteLine("Print the new name of the ship:");
-                        string name = Console.ReadLine();
-
-
-                        NameOfTheShip = name;
-                        Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                        k++;
-                        break;
-                    }
-                case 4:
-                    {
-                        Console.WriteLine("Print number you want modify the property:");
-                        double name = Convert.ToDouble(Console.ReadLine());
-
-
-                        LoadCapacity = name;
-                        Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                        k++;
-                        break;
-
-                    }
-            case 5:
-                {
-                    Console.WriteLine("Print number you want modify the property:");
-                    double name = Convert.ToDouble(Console.ReadLine());
-
-
-                    CurrentLoad = name;
-                    IsOverloading();
-                    Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                    k++;
-                    break;
-
-                }
-            default:
-                {
-                    Console.WriteLine("You have entered an inccorect number");
-                    break;
-                }
+                
+                
             }
-        
-        
+        }
     }
-}
-    }
-}
+

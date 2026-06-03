@@ -9,11 +9,17 @@ namespace Project_Programming
     public class CargoShip : Ship
     {
         private double loadCapacity;
-        protected List<CargoShip> ships = new List<CargoShip>();
-        protected List<CrewMember> crew = new List<CrewMember>();
-        public CargoShip(double enginePower, string name_of_the_ship, double displacement, string name_of_the_port, double loadCapacity) : base(enginePower, name_of_the_ship, displacement, name_of_the_port)
+        private double currentLoad;
+        private int shipIndex;
+        //protected List<CargoShip> ship = new List<CargoShip>();
+        //protected List<CrewMember> crew = new List<CrewMember>();
+        public CargoShip() : this(0, "Unknown", 0, "Unknown", 0, 0) { }
+        public CargoShip(double enginePower, string name_of_the_ship, double displacement, string name_of_the_port, double loadCapacity, double load) : base(enginePower, name_of_the_ship, displacement, name_of_the_port)
         {
-            this.loadCapacity = loadCapacity;
+            LoadCapacity = loadCapacity;
+            CurrentLoad = load;
+            
+
         }
         public double LoadCapacity
         {
@@ -27,13 +33,41 @@ namespace Project_Programming
                 loadCapacity = value;
             }
         }
+        public double CurrentLoad
+        {
+            get { return currentLoad; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Load can't be negative");
+                }
+                currentLoad = value;
+            }
+        }
 
-        public void AddShips(CargoShip CarShipToAdd)
+        public bool IsOverloading()
+        {
+            if (CurrentLoad > LoadCapacity)
+            {
+                Console.WriteLine("Your ship is overloaded");
+                return true;
+
+            }
+            else
+            {
+                Console.WriteLine("Your ship is not overloaded");
+                return false;
+            }
+        }
+        public override void AddShips(Ship ShipToAdd)
         {
 
-            ships.Add(CarShipToAdd);
+            ship.Add(ShipToAdd);
+           Console.WriteLine($"Your ship was succesfully added to the {name_of_the_port}");
 
         }
+
         public override void AddMembers(CrewMember member)
         {
             crew.Add(member);
@@ -70,19 +104,17 @@ namespace Project_Programming
                         break;
 
                 }
-                Console.WriteLine("There are characteristic of your ship that you want to modify:");
+                Console.WriteLine("There are characteristic of your cargo ship that you want to modify:");
                 Console.WriteLine("1. Engine power (in watts)");
                 Console.WriteLine("2. Displacement");
                 Console.WriteLine("3. Name of the ship");
                 Console.WriteLine("4. Load Capacity");
-                Console.WriteLine("5. Quit");
+                Console.WriteLine("5. Current load");
+                Console.WriteLine("6. Quit");
                 int i = Convert.ToInt32(Console.ReadLine());
-                if (i == 5)
-                {
+                if (i == 6)
                     break;
-                }
-                if (i > 0 && i < 6)
-                {
+ 
                     switch (i)
                     {
                         case 1:
@@ -111,7 +143,7 @@ namespace Project_Programming
                         case 3:
                             {
 
-                                Console.WriteLine("Print number you want modify the property:");
+                                Console.WriteLine("Print the new name of the ship:");
                                 string name = Console.ReadLine();
 
 
@@ -130,13 +162,29 @@ namespace Project_Programming
                                 Console.WriteLine($"You have modified property of {name_of_the_ship}");
                                 k++;
                                 break;
+
                             }
+                    case 5:
+                        {
+                            Console.WriteLine("Print number you want modify the property:");
+                            double name = Convert.ToDouble(Console.ReadLine());
+
+
+                            CurrentLoad = name;
+                            IsOverloading();
+                            Console.WriteLine($"You have modified property of {name_of_the_ship}");
+                            k++;
+                            break;
+
+                        }
+                    default:
+                        {
+                            Console.WriteLine("You have entered an inccorect number");
+                            break;
+                        }
                     }
-                }
-                else
-                {
-                    Console.WriteLine("You have entered incorrect number, try again");
-                }
+                
+                
             }
         }
     }

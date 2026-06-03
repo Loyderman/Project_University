@@ -6,53 +6,92 @@ using System.Threading.Tasks;
 
 namespace Project_Programming
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Ship: ");
-            Ship ship = new Ship(230, "Alex", 345, "Parus");
+            int i = 0;
+            Session session = new Session();
+            try
+            {
+                while (true)
+                {
+                    string k = string.Empty;
+                    if (i == 0)
+                    {
+                        Console.WriteLine("=================================================================");
+                        Console.WriteLine("Hi, it is your port system. Which action do you want to do?");
+                        Console.WriteLine("=================================================================");
+                    }
+                    i++;
 
-            ship.ShipModification();
+                    Console.WriteLine("\n+---------------------------------------------------------------+");
+                    Console.WriteLine("| MAIN PORT MENU                                                |");
+                    Console.WriteLine("+---------------------------------------------------------------+");
+                    Console.WriteLine("| 1. Add Passenger ship                                         |");
+                    Console.WriteLine("| 2. Add Cargo ship                                             |");
+                    Console.WriteLine("| 3. Change properties in your ship                             |");
+                    Console.WriteLine("| 4. Remove ship                                                |");
+                    Console.WriteLine("+---------------------------------------------------------------+");
+                    Console.Write("  Print number of what you want to do: ");
+                    k = Console.ReadLine();
 
-            Ship ship1 = new CargoShip(123,"h",345,"234234", 34567);
+                    switch (k)
+                    {
+                        case "1":
+                            {
+                                PassengerShip pass = new PassengerShip();
+                                Console.WriteLine("\n[Adding Passenger Ship]");
+                                Console.WriteLine("  Print with separating by ',' characteristics of your ship:");
+                                Console.WriteLine("  name of the ship, name of the port, engine power, displacement,");
+                                Console.WriteLine("  number of passengers, number of sits and capacity of sits");
+                                Console.Write("  -> ");
+                                string character = Console.ReadLine();
+                                pass.AddShips(character);
+                                Console.WriteLine($"Your ship with individual index: {pass.ShipIndex} was succesfully added to the {pass.NameOfThePort}");
 
-            CrewMember member = new CrewMember("Ivanov", "captain", 34, 5);
-            CrewMember member1 = new CrewMember("Sergey", "Janitor", 45, 4);
-            CrewMember member2 = new CrewMember("Alex", "Chef", 19, 3);
-            CrewMember member3 = new CrewMember("Ksenia", "Pilot", 22, 2);
+                                break;
+                            }
+                        case "2":
+                            {
+                                CargoShip pass1 = new CargoShip();
+                                Console.WriteLine("\n[Adding Cargo Ship]");
+                                Console.WriteLine("  Print with separating by ',' characteristics of your ship:");
+                                Console.WriteLine("  name of the ship, name of the port, engine power, displacement,");
+                                Console.WriteLine("  load capacity and current load");
+                                Console.Write("  -> ");
+                                string character = Console.ReadLine();
+                                pass1.AddShips(character);
+                                Console.WriteLine($"Your ship with individual index: {pass1.ShipIndex} was succesfully added to the {pass1.NameOfThePort}");
+                                break;
+                            }
 
-           // ship.AddMembers(member);
+                        case "3":
+                            {
+                                session.ChooseShipYouWantToCange();
 
-            ship1.AddMembers(member1);
-            ship1.AddMembers(member2);
-            ship1.AddMembers(member3);
-            ship1.AddMembers(member);
-
-            Console.WriteLine(ship1.IshasCaptain());
-
-
-            Console.WriteLine("Passenger ship: ");
-
-            PassengerShip pass = new PassengerShip(12, "Pass", 345, "Port1", 23, 35, 2);
-
-            pass.ShipModification();
-
-            PassengerShip pass1 = new PassengerShip(12, "Passenger Sip", 35, "Port2", 24, 46, 2);
-
-            pass.AddShips(pass1);
-
-            pass.ShipModification();
-
-            Console.WriteLine("Cargo ship: ");
-
-            Ship ship3 = new CargoShip(123, "h", 345, "234234", 34567);
-
-            ship3.ShipModification();
-
-
-
-
+                                break;
+                            }
+                        case "4":
+                            {
+                                session.InterfaceforRemovingSips();
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("\n[!] You have entered an incorrect number, try again.");
+                                break;
+                            }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n[CRITICAL ERROR]: {ex.Message} ");
+            }
         }
     }
 }
+    
+
+

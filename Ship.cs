@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace Project_Programming
 {
-
-    public class Ship
+   
+    public abstract class Ship
     {
         protected double enginePower;
         protected string name_of_the_ship;
         protected double displacement;
         protected string name_of_the_port;
+        private int shipIndex;
         protected List<CrewMember> crew = new List<CrewMember>();
-        protected List<Ship> ship;
+        protected static List<Ship> ship = new List<Ship>();
         public Ship(double enginePower, string name_of_the_ship, double displacement, string name_of_the_port)
         {
             EnginePower = enginePower;
@@ -38,6 +39,14 @@ namespace Project_Programming
                 enginePower = value;
             }
         }
+        public int ShipIndex
+            {
+            get {  return shipIndex; }
+            set
+            {
+                shipIndex = value;
+            }
+            }
         public string NameOfTheShip
         {
             get
@@ -82,107 +91,60 @@ namespace Project_Programming
                 name_of_the_port = value;
             }
         }
-        public virtual void AddShips(Ship ShipToAdd)
-        {
-            ship.Add(ShipToAdd);
 
-        }
-        public virtual void AddMembers(CrewMember member)
+        public List<CrewMember> Crew
         {
-            crew.Add(member);
+            get { return crew; }
         }
-        public virtual bool IshasCaptain()
+        public List<Ship> Ships
+        {
+            get { return ship; }
+        }
+        public abstract void AddShips(string character);
+
+
+        public abstract void AddMembers(string str);
+
+        public abstract bool IshasCaptain();
+
+        
+        public abstract void ShipModification(int num, string modification);
+        public int[] RemoveShipByname(string name)
         {
             int i = 0;
-            for (i = 0; i < crew.Count; i++)
+            int j = 0;
+            for (j = 0; j < ship.Count;j++)
             {
-                if (crew[i].Proffession == "captain" || crew[i].Proffession == "Captain")
+                if (ship[j].NameOfTheShip == name)
                 {
-                    i = -1;
-                    break;
+                    i++;
                 }
+
             }
-            if (i == -1)
+            int[] ints = new int[3];
+            ints[0] = i;
+            ints[1] = j;
+            return ints;
+
+        }
+
+        public bool RemoveShipByIndex(int index)
+        {
+
+            int i = 0;
+           
+            foreach (Ship s in ship)
             {
-                return true;
+                if (s.ShipIndex == index)
+                {
+                    ship.Remove(s);
+                    return true;
+                    
+                }
+
             }
             return false;
-        }
-        public virtual void ShipModification()
-        {
-            int k = 0;
-            while (true)
-            {
 
-                if (k > 0)
-                {
-                    Console.WriteLine("Do you want to modify another property?");
-                    Console.WriteLine("1. Yes ");
-                    Console.WriteLine("2. No");
-                    int j = Convert.ToInt32(Console.ReadLine());
-                    if (j == 2)
-                        break;
-                }
-                Console.WriteLine("There are characteristic of your ship that you want to modify:");
-                Console.WriteLine("1. Engine power (in watts)");
-                Console.WriteLine("2. Displacement");
-                Console.WriteLine("3. Name of the ship");
-                Console.WriteLine("4. Quit");
-                Console.WriteLine("Enter a number to modify property: ");
-                int i = Convert.ToInt32(Console.ReadLine());
-                if(i == 4)
-                {
-                    break;
-                }
-
-                    switch (i)
-                    {
-                        case 1:
-                            {
-                                Console.WriteLine("Print number you want modify the property:");
-                                double Engine = Convert.ToDouble(Console.ReadLine());
-                               
-                               
-                                    EnginePower = Engine;
-
-                                Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                                k++;
-                                    break;
-                            }
-                        case 2:
-                            {
-
-                                Console.WriteLine("Print number you want modify the property:");
-                                double name= Convert.ToDouble(Console.ReadLine());
-                               
-                                
-                                    Displacement = name;
-                                Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                                k++;
-                                break;
-                            }
-                        case 3:
-                            {
-
-                                Console.WriteLine("Print the new name of the ship:");
-                                string name = Console.ReadLine();
-                               
-                                    NameOfTheShip = name;
-                                Console.WriteLine($"You have modified property of {name_of_the_ship}");
-                                k++;
-                                break;
-                            }
-                        default:
-                            {
-                                Console.WriteLine("You have entered an inccorect number");
-                                break;
-                            }
-                    }
-                
-
-
-            }
-            
         }
     }
         
