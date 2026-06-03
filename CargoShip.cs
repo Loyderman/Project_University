@@ -46,17 +46,17 @@ namespace Project_Programming
 
         public bool IsOverloading()
         {
-            if (CurrentLoad > LoadCapacity)
-            {
-                Console.WriteLine("Your ship is overloaded");
-                return true;
+             if (CurrentLoad > LoadCapacity)
+ {
+     
+     return true;
 
-            }
-            else
-            {
-                Console.WriteLine("Your ship is not overloaded");
-                return false;
-            }
+ }
+ else
+ {
+     
+     return false;
+ }
         }
         public override void AddShips(string charac)
         {
