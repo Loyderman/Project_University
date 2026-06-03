@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Project_Programming/Project_Programming/PassengerShip.cs
+/CrewMember.cs
+/Ship.cs
+/PassengerShip.cs
+/CargoShip.cs
