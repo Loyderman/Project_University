@@ -16,25 +16,24 @@ namespace Project_Programming
             {
                 while (true)
                 {
-                    
                     string k = string.Empty;
                     if (i == 0)
                     {
                         Console.WriteLine("=================================================================");
-                        Console.WriteLine("Hi,it is your port system. Which action do you want to do?");
+                        Console.WriteLine("Hi, it is your port system. Which action do you want to do?");
                         Console.WriteLine("=================================================================");
                     }
                     i++;
-                    Console.WriteLine("-------------------------------");
-                    Console.WriteLine("1.Add Passenger ship");
-                    Console.WriteLine("-------------------------------");
-                    Console.WriteLine("2.Add Cargo ship");
-                    Console.WriteLine("-------------------------------");
-                    Console.WriteLine("3.Change properties in your ship");
-                    Console.WriteLine("-------------------------------");
-                    Console.WriteLine("4.Remove ship");
-                    Console.WriteLine("-------------------------------");
-                    Console.WriteLine("Print number of what you want to do:");
+
+                    Console.WriteLine("\n+---------------------------------------------------------------+");
+                    Console.WriteLine("| MAIN PORT MENU                                                |");
+                    Console.WriteLine("+---------------------------------------------------------------+");
+                    Console.WriteLine("| 1. Add Passenger ship                                         |");
+                    Console.WriteLine("| 2. Add Cargo ship                                             |");
+                    Console.WriteLine("| 3. Change properties in your ship                             |");
+                    Console.WriteLine("| 4. Remove ship                                                |");
+                    Console.WriteLine("+---------------------------------------------------------------+");
+                    Console.Write("  Print number of what you want to do: ");
                     k = Console.ReadLine();
 
                     switch (k)
@@ -42,32 +41,36 @@ namespace Project_Programming
                         case "1":
                             {
                                 PassengerShip pass = new PassengerShip();
-                                Console.WriteLine("Print with separating by , characteristics of your ship: name of the ship, name of the port, engine power, displacement, number of passengers, number of sits and capacity of sits");
+                                Console.WriteLine("\n[Adding Passenger Ship]");
+                                Console.WriteLine("  Print with separating by ',' characteristics of your ship:");
+                                Console.WriteLine("  name of the ship, name of the port, engine power, displacement,");
+                                Console.WriteLine("  number of passengers, number of sits and capacity of sits");
+                                Console.Write("  -> ");
                                 string character = Console.ReadLine();
                                 pass.AddShips(character);
-
-
+                                Console.WriteLine($"Your ship with individual index: {pass.ShipIndex} was succesfully added to the {pass.NameOfThePort}");
 
                                 break;
                             }
                         case "2":
                             {
                                 CargoShip pass1 = new CargoShip();
-                                Console.WriteLine("Print with separating by , characteristics of your ship: name of the ship, name of the port, engine power, displacement, load capacity and current load");
+                                Console.WriteLine("\n[Adding Cargo Ship]");
+                                Console.WriteLine("  Print with separating by ',' characteristics of your ship:");
+                                Console.WriteLine("  name of the ship, name of the port, engine power, displacement,");
+                                Console.WriteLine("  load capacity and current load");
+                                Console.Write("  -> ");
                                 string character = Console.ReadLine();
                                 pass1.AddShips(character);
-
+                                Console.WriteLine($"Your ship with individual index: {pass1.ShipIndex} was succesfully added to the {pass1.NameOfThePort}");
                                 break;
-
                             }
-
 
                         case "3":
                             {
                                 session.ChooseShipYouWantToCange();
 
                                 break;
-
                             }
                         case "4":
                             {
@@ -76,20 +79,16 @@ namespace Project_Programming
                             }
                         default:
                             {
-                                Console.WriteLine("You have entered an inccorect number, try again");
+                                Console.WriteLine("\n[!] You have entered an incorrect number, try again.");
                                 break;
                             }
                     }
                 }
-
             }
-
             catch (Exception ex)
             {
-                Console.WriteLine($"{ex.Message} ");
+                Console.WriteLine($"\n[CRITICAL ERROR]: {ex.Message} ");
             }
-
-
         }
     }
 }
