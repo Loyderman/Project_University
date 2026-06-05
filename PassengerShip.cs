@@ -45,7 +45,7 @@ namespace Project_Programming
             }
             set
             {
-                if (number_of_sits < 0)
+                if (value < 0)
                 {
                     throw new ArgumentException("The number of sits can't be negative");
 
