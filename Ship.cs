@@ -112,19 +112,19 @@ namespace Project_Programming
 
         public int[] RemoveShipByname(string name)
         {
-            int i = 0;
-            int j = 0;
-            for (j = 0; j < ship.Count;j++)
+           int matchCount = 0;
+            int lastFoundIndex = -1;
+            for (int j = 0; j < ship.Count; j++)
             {
-                if (ship[j].NameOfTheShip == name)
+                if (ship[j].NameOfTheShip.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
-                    i++;
+                    matchCount++;
+                    lastFoundIndex = j;
                 }
-
             }
-            int[] ints = new int[3];
-            ints[0] = i;
-            ints[1] = j;
+            int[] ints = new int[2];
+            ints[0] = matchCount;
+            ints[1] = lastFoundIndex; 
             return ints;
 
         }
