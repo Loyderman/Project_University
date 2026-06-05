@@ -60,6 +60,7 @@ namespace Project_Programming
                 {
                     throw new ArgumentException("The term of the work can't be negative");
                 }
+                term_of_work = value;
             }
         }
         public string SNP
