@@ -29,7 +29,7 @@ namespace Project_Programming
             }
             set
             {
-                if (number_of_passengers < 0)
+                if (value < 0)
                 {
                     throw new ArgumentException("The number of passengers can't be negative");
 
