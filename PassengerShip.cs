@@ -219,7 +219,7 @@ namespace Project_Programming
                             }
                         default:
                         {
-                            throw new ArgumentException("You have entered an inccorect number");
+                            throw new ArgumentException("You have entered an incorrect number");
                             
                         }
                     }
