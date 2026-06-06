@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Project_Programming
+{
+    public class CrewMember
+    {
+        private string snp;
+        protected string profession;
+        private int age;
+        private int term_of_work;
+
+        public CrewMember() : this("Unknown crew member", "Unknown", 20, 2) { }
+
+        public CrewMember(string Snp, string proffesion, int age0, int Term)
+        {
+            SNP = Snp;
+            Proffession = proffesion;
+            Age = age0;
+            Term_of_work = Term;
+        }
+        public void Change_profession(string profession)
+        {
+
+            Proffession = profession;
+        }
+        public string Proffession
+        {
+            get { return profession; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException("Proffesion can't be empty");
+                profession = value;
+            }
+        }
+        public int Age
+        {
+            get { return age; }
+            set
+            {
+                if (value < 16)
+                {
+                    throw new ArgumentException("Age can't be lesser than 16");
+                }
+                
+                    age = value;
+            }
+
+        }
+        public int Term_of_work
+        {
+            get { return term_of_work; }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("The term of the work can't be negative or");
+                }
+                else if (value >= (Age - 16))
+                {
+                    throw new ArgumentException("The term of the work  can`t be greater than age of the man");
+                }
+                else
+                {
+                    term_of_work = value;
+                }
+            }
+        }
+        public string SNP
+        {
+            get { return snp; }
+            set
+            {
+                string[] str = value.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                if (str.Length < 3)
+                {
+                    throw new ArgumentException("Full name of the peson must be defined as: Surname name patronymic");
+                }
+                else if (string.IsNullOrWhiteSpace(str[0]) || string.IsNullOrWhiteSpace(str[1]) || string.IsNullOrWhiteSpace(str[2]))
+                {
+                    throw new ArgumentException("Full name of the peson must be defined as: Surname name patronymic");
+                }
+                snp = value;
+            }
+        }
+        public override string ToString()
+        {
+            return $"SNP: {SNP}, age: {Age}, term of work{term_of_work}, profession{Proffession}";
+        }
+
+    }
+}
